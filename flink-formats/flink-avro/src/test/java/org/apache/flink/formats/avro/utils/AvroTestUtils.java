@@ -18,6 +18,7 @@
 
 package org.apache.flink.formats.avro.utils;
 
+import java.time.LocalDateTime;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.formats.avro.generated.Address;
 import org.apache.flink.formats.avro.generated.Colors;
@@ -33,9 +34,6 @@ import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.BinaryEncoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificRecord;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,6 +42,8 @@ import java.nio.ByteBuffer;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -91,7 +91,7 @@ public final class AvroTestUtils {
 			.setTypeDate(LocalDate.parse("2014-03-01"))
 			.setTypeTimeMillis(LocalTime.parse("12:12:12"))
 			.setTypeTimeMicros(123456)
-			.setTypeTimestampMillis(DateTime.parse("2014-03-01T12:12:12.321Z"))
+			.setTypeTimestampMillis(LocalDate.parse("2014-03-01T12:12:12.321Z").)
 			.setTypeTimestampMicros(123456L)
 			// byte array must contain the two's-complement representation of the
 			// unscaled integer value in big-endian byte order
