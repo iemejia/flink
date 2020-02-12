@@ -33,9 +33,6 @@ import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.BinaryEncoder;
 import org.apache.avro.io.EncoderFactory;
 import org.apache.avro.specific.SpecificRecord;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -44,6 +41,11 @@ import java.nio.ByteBuffer;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -91,8 +93,8 @@ public final class AvroTestUtils {
 			.setTypeDate(LocalDate.parse("2014-03-01"))
 			.setTypeTimeMillis(LocalTime.parse("12:12:12"))
 			.setTypeTimeMicros(123456)
-			.setTypeTimestampMillis(DateTime.parse("2014-03-01T12:12:12.321Z"))
-			.setTypeTimestampMicros(123456L)
+			.setTypeTimestampMillis(OffsetDateTime.parse("2014-03-01T12:12:12.321Z").toInstant())
+			.setTypeTimestampMicros(ChronoUnit.MICROS.addTo(Instant.ofEpochMilli(0), 123456L))
 			// byte array must contain the two's-complement representation of the
 			// unscaled integer value in big-endian byte order
 			.setTypeDecimalBytes(ByteBuffer.wrap(BigDecimal.valueOf(2000, 2).unscaledValue().toByteArray()))
@@ -196,7 +198,7 @@ public final class AvroTestUtils {
 		user.put("type_date", LocalDate.parse("2014-03-01"));
 		user.put("type_time_millis", LocalTime.parse("12:12:12"));
 		user.put("type_time_micros", 123456);
-		user.put("type_timestamp_millis", DateTime.parse("2014-03-01T12:12:12.321Z"));
+		user.put("type_timestamp_millis", OffsetDateTime.parse("2014-03-01T12:12:12.321Z").toInstant());
 		user.put("type_timestamp_micros", 123456L);
 		user.put("type_decimal_bytes",
 			ByteBuffer.wrap(BigDecimal.valueOf(2000, 2).unscaledValue().toByteArray()));

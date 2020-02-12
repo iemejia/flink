@@ -125,7 +125,7 @@ under the License.
 		<jackson.version>2.10.1</jackson.version>
 		<metrics.version>3.1.5</metrics.version>
 		<prometheus.version>0.3.0</prometheus.version>
-		<avro.version>1.8.2</avro.version>
+		<avro.version>1.9.2</avro.version>
 		<javax.activation.api.version>1.2.0</javax.activation.api.version>
 		<jaxb.api.version>2.3.1</jaxb.api.version>
 		<junit.version>4.12</junit.version>

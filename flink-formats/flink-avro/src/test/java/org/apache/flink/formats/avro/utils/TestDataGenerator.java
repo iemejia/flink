@@ -25,12 +25,13 @@ import org.apache.flink.formats.avro.generated.Fixed2;
 import org.apache.flink.formats.avro.generated.SimpleUser;
 import org.apache.flink.formats.avro.generated.User;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
-
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,8 +63,8 @@ public class TestDataGenerator {
 				LocalDate.parse("2014-03-01"),
 				LocalTime.parse("12:12:12"),
 				123456,
-				DateTime.parse("2014-03-01T12:12:12.321Z"),
-				123456L,
+				OffsetDateTime.parse("2014-03-01T12:12:12.321Z").toInstant(),
+				ChronoUnit.MICROS.addTo(Instant.ofEpochMilli(0), 123456L),
 				ByteBuffer.wrap(BigDecimal.valueOf(2000, 2).unscaledValue().toByteArray()),
 				new Fixed2(BigDecimal.valueOf(2000, 2).unscaledValue().toByteArray()));
 	}
